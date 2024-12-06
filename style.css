@@ -12,7 +12,7 @@
     gap: 1rem;
 }
 
-.item {
+.calendar-item {
     display: flex;
     justify-content: center;
     align-items: center;
