@@ -8,6 +8,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
+    <header>
+        <h1> Max Julkalender!</h1>
+    </header>
+
+    <main>
+        <label for="calendar-content">Choose calendar content:</label>
+
+        <select name="content" id="content-select">
+        <option value="">--Please choose an option--</option>
+        <option value="facts">I want facts</option>
+        <option value="facts">I want photos</option>
+        </select>
+
+        <button id="generate-calendar">Generate calendar</button>
+
+        <section class="calendar-container" id="calendar-container">
+    
+        </section>
+    </main>
+    
     <script src="script.js"></script>
 </body>
 </html>
