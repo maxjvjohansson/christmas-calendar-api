@@ -11,11 +11,21 @@ document.getElementById('generate-calendar').addEventListener('click', () => {
     const contentBox = document.getElementById('content-box');
 
     calendarItems.forEach(item => {
+        const newItem = item.cloneNode(true);
+        item.parentNode.replaceChild(newItem, item);
+    });
+
+    const updatedCalendarItems = document.querySelectorAll('.calendar-item');
+
+    updatedCalendarItems.forEach(item => {
         const day = item.id.split('-')[1];
 
         item.addEventListener('click', () => {
-            overlay.classList.remove('hidden');
 
+            overlay.classList.remove('hidden');
+            contentBox.innerHTML = '<p>Loading...<p>';
+            console.log(contentType)
+            
             if (contentType === 'facts') {
                 fetch(`http://numbersapi.com/12/${day}/date`)
                     .then(response => response.text())
@@ -26,7 +36,7 @@ document.getElementById('generate-calendar').addEventListener('click', () => {
                         contentBox.innerHTML = `<p>Error loading fact</p>`;
                         console.error(err);
                     });
-            } if (contentType === 'photos') {
+            } else if (contentType === 'photos') {
                 fetch(`https://picsum.photos/seed/${day}/300`)
                     .then(response => {
                         contentBox.innerHTML = `<img src="${response.url}" alt="Random photo for day ${day}" />`;

@@ -9,6 +9,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     margin-top: 1rem;
+    padding: 0 1rem;
     gap: 1rem;
 }
 
@@ -33,8 +34,6 @@
 }
 
 #content-overlay {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
