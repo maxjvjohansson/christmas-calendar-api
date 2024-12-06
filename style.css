@@ -23,14 +23,30 @@
     border: 0.2rem dashed rgba(0, 0, 0, 0.7);
     font-size: 2rem;
     color: white;
+    cursor: pointer;
 }
 
-.calendar-item img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
+.calendar-item:hover {
+    transform: scale(1.05);
+    transition: 0.3s ease;
+    opacity: 0.8;
 }
 
-.calendar-item p {
-    margin: 5px 0;
+#content-overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#content-box {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }
