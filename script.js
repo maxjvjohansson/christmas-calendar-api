@@ -10,7 +10,7 @@ function generateCalendar() {
 
     const calendarItems = document.querySelectorAll('.calendar-door');
     calendarItems.forEach(addCalendarItemListener);
-    
+
     // Add overlay click event
     setupOverlayListener();
 }
@@ -26,30 +26,29 @@ function addCalendarItemListener(item) {
 
     const day = getDayFromItemId(item.id);
 
-    item.addEventListener('click', () => handleCalendarItemClick(day));
+    item.addEventListener('click', () => handleCalendarItemClick(day, item));
     item.dataset.listenerAdded = "true";
 }
 
 // Click handling for calendar objects
-function handleCalendarItemClick(day) {
+function handleCalendarItemClick(day, item) {
     const contentType = getContentType();
-    const overlay = document.getElementById('content-overlay');
-    const contentBox = document.getElementById('content-box');
+    const contentBox = item.closest('.calendar-item').querySelector('.content-box');
 
     if (!contentType) {
-        // Clear content and hide overlay if no content type is selected
+        // Clear content if no content type is selected
         contentBox.innerHTML = "";
-        overlay.classList.add('hidden');
+        contentBox.style.display = "none"; // Hide content box
         return;
     }
 
-    if (!overlay.classList.contains('hidden')) {
-        // If overlay is visible, hide it and clear content
-        overlay.classList.add('hidden');
-        contentBox.innerHTML = "";
-    } else {
-        // Show overlay with new content
-        overlay.classList.remove('hidden');
+    // Check if any other doors are open and close them
+    closeAllOtherDoors(item);
+
+    if (!item.classList.contains('open')) {
+        // Open the current door and show content
+        item.classList.add('open');
+        contentBox.style.display = "block"; // Show content box
         contentBox.innerHTML = '<p>Loading...</p>';
 
         if (contentType === 'facts') {
@@ -57,12 +56,30 @@ function handleCalendarItemClick(day) {
         } else if (contentType === 'photos') {
             fetchPhotoForDay(day, contentBox);
         }
+    } else {
+        // If the door is already open, close it
+        item.classList.remove('open');
+        contentBox.style.display = "none"; // Hide content box
     }
+}
+
+// Close all other doors and hide their content boxes
+function closeAllOtherDoors(openedItem) {
+    const allItems = document.querySelectorAll('.calendar-item');
+    allItems.forEach(item => {
+        const contentBox = item.querySelector('.content-box');
+        const door = item.querySelector('.calendar-door');
+        
+        if (item !== openedItem.closest('.calendar-item') && door.classList.contains('open')) {
+            door.classList.remove('open');
+            contentBox.style.display = "none"; // Hide content box of other items
+        }
+    });
 }
 
 // Fetch facts for each day
 function fetchFactForDay(day, contentBox) {
-    fetch(`http://numbersapi.com/12/${day}/date`)
+    fetch(`http://numbersapi.com/${day}/date`)
         .then(response => response.text())
         .then(data => {
             contentBox.innerHTML = `<p>${data}</p>`;
@@ -85,28 +102,9 @@ function fetchPhotoForDay(day, contentBox) {
         });
 }
 
-// Add overlay click functionality
-function setupOverlayListener() {
-    const overlay = document.getElementById('content-overlay');
-    overlay.addEventListener('click', () => {
-        overlay.classList.add('hidden');
-        document.getElementById('content-box').innerHTML = "";
-    });
-}
-
 // Get correct day from calendar object's ID
 function getDayFromItemId(id) {
     return id.split('-')[1];
 }
 
-// Open door animation
-document.querySelectorAll('.calendar-door').forEach(button => {
-    button.addEventListener('click', function() {
-        this.classList.toggle('open');
 
-        const contentBox = this.nextElementSibling; 
-        if (contentBox) {
-            contentBox.classList.toggle('visible'); 
-        }
-    });
-});
