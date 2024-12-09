@@ -10,9 +10,6 @@ function generateCalendar() {
 
     const calendarItems = document.querySelectorAll('.calendar-door');
     calendarItems.forEach(addCalendarItemListener);
-
-    // Add overlay click event
-    setupOverlayListener();
 }
 
 // Function to target selected content type
@@ -48,7 +45,7 @@ function handleCalendarItemClick(day, item) {
     if (!item.classList.contains('open')) {
         // Open the current door and show content
         item.classList.add('open');
-        contentBox.style.display = "block"; // Show content box
+        contentBox.style.display = "block";
         contentBox.innerHTML = '<p>Loading...</p>';
 
         if (contentType === 'facts') {
@@ -57,9 +54,9 @@ function handleCalendarItemClick(day, item) {
             fetchPhotoForDay(day, contentBox);
         }
     } else {
-        // If the door is already open, close it
+        // If a door is already open, close it
         item.classList.remove('open');
-        contentBox.style.display = "none"; // Hide content box
+        contentBox.style.display = "none";
     }
 }
 
@@ -72,14 +69,14 @@ function closeAllOtherDoors(openedItem) {
         
         if (item !== openedItem.closest('.calendar-item') && door.classList.contains('open')) {
             door.classList.remove('open');
-            contentBox.style.display = "none"; // Hide content box of other items
+            contentBox.style.display = "none";
         }
     });
 }
 
 // Fetch facts for each day
 function fetchFactForDay(day, contentBox) {
-    fetch(`http://numbersapi.com/${day}/date`)
+    fetch(`http://numbersapi.com/12/${day}/date`)
         .then(response => response.text())
         .then(data => {
             contentBox.innerHTML = `<p>${data}</p>`;
@@ -106,5 +103,3 @@ function fetchPhotoForDay(day, contentBox) {
 function getDayFromItemId(id) {
     return id.split('-')[1];
 }
-
-
