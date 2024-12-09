@@ -8,7 +8,7 @@ function generateCalendar() {
         return;
     }
 
-    const calendarItems = document.querySelectorAll('.calendar-item');
+    const calendarItems = document.querySelectorAll('.calendar-door');
     calendarItems.forEach(addCalendarItemListener);
     
     // Add overlay click event
@@ -98,3 +98,15 @@ function setupOverlayListener() {
 function getDayFromItemId(id) {
     return id.split('-')[1];
 }
+
+// Open door animation
+document.querySelectorAll('.calendar-door').forEach(button => {
+    button.addEventListener('click', function() {
+        this.classList.toggle('open');
+
+        const contentBox = this.nextElementSibling; 
+        if (contentBox) {
+            contentBox.classList.toggle('visible'); 
+        }
+    });
+});

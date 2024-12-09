@@ -4,6 +4,12 @@
 }
 
 .calendar-container {
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.calendar-list {
     width: 100%;
     height: 100%;
     display: grid;
@@ -11,6 +17,7 @@
     margin-top: 1rem;
     padding: 0 1rem;
     gap: 1rem;
+    list-style: none;
 }
 
 .calendar-item {
@@ -19,18 +26,66 @@
     align-items: center;
     width: 100%;
     height: 10rem;
-    background-color: salmon;
     border-radius: 0.5rem;
-    border: 0.2rem dashed rgba(0, 0, 0, 0.7);
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
+    background-color: black;
 }
 
 .calendar-item:hover {
     transform: scale(1.05);
     transition: 0.3s ease;
-    opacity: 0.8;
+}
+
+.calendar-door {
+    width: 100%;
+    height: 10rem;
+    border-radius: 0.5rem;
+    border-style: none;
+    background-color: salmon;
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 300ms ease; 
+    transform-origin: left;
+}
+
+.calendar-door.open {
+    transform: rotateY(180deg); 
+}
+
+.calendar-door .front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0.2rem dashed rgba(0, 0, 0, 0.7);
+    border-radius: 0.5rem;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: salmon;
+    color: white;
+    font-size: 2rem;
+}
+
+.calendar-door .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    transform: rotateY(180deg);
+    backface-visibility: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    color: white;
+    font-size: 1.5rem;
 }
 
 #content-overlay {
