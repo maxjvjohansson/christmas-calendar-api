@@ -71,9 +71,42 @@ main {
 @media (min-width: 768px) {
     .calendar-list {
         grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
         gap: 1rem;
         margin-top: 10%;
+        grid-template-areas: 
+        "a b c d d e"
+        "a f f g h h"
+        "i j k k l m"
+        "n o o p l q"
+        "r s t u x x"
+        "r v v w x x";
     }
+
+    #item-1  { grid-area: a; }
+    #item-2  { grid-area: b; }
+    #item-3  { grid-area: c; }
+    #item-4  { grid-area: d; }
+    #item-5  { grid-area: e; }
+    #item-6  { grid-area: f; }
+    #item-7  { grid-area: g; }
+    #item-8  { grid-area: h; }
+    #item-9  { grid-area: i; }
+    #item-10 { grid-area: j; }
+    #item-11 { grid-area: k; }
+    #item-12 { grid-area: l; }
+    #item-13 { grid-area: m; }
+    #item-14 { grid-area: n; }
+    #item-15 { grid-area: o; }
+    #item-16 { grid-area: p; }
+    #item-17 { grid-area: q; }
+    #item-18 { grid-area: r; }
+    #item-19 { grid-area: s; }
+    #item-20 { grid-area: t; }
+    #item-21 { grid-area: u; }
+    #item-22 { grid-area: v; }
+    #item-23 { grid-area: w; }
+    #item-24 { grid-area: x; }
 }
 
 .calendar-item {
@@ -88,7 +121,7 @@ main {
 
 @media (min-width: 768px) {
     .calendar-item {
-        height: 12rem;
+        height: 10rem;
     }
 }
 
