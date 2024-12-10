@@ -163,3 +163,32 @@ function handleCalendarItemClick(day, item) {
         openModal(contentBox.innerHTML);
     });
 }
+
+// Let users only open doors today and the doors before today
+document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date();
+    const calendarItems = document.querySelectorAll('.calendar-item');
+
+    calendarItems.forEach(item => {
+        const itemDate = new Date(item.getAttribute('data-date'));
+        const door = item.querySelector('.calendar-door');
+        const contentBox = item.querySelector('.content-box');
+
+        if (today < itemDate) {
+            door.classList.add('disabled');
+            door.style.pointerEvents = 'none';
+            contentBox.style.display = 'none';
+
+            const lockIconContainer = document.createElement('div');
+            lockIconContainer.classList.add('lock-icon-container');
+
+            const lockIcon = document.createElement('img');
+            lockIcon.src = 'assets/images/lock-icon.svg';  
+            lockIcon.alt = 'Lock icon';
+
+            lockIconContainer.appendChild(lockIcon);
+
+            door.appendChild(lockIconContainer);
+        }
+    });
+});

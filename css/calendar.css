@@ -159,3 +159,12 @@
     font-size: 1rem;
     cursor: pointer;
 }
+
+.lock-icon-container {
+    z-index: 1000;
+}
+
+.lock-icon-container img {
+    width: 5rem;
+    height: auto;
+}
