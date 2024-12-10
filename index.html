@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
     
@@ -14,13 +15,15 @@
     </header>
     
     <main>
-        <label for="content-select">Choose calendar content:</label>
-
-        <select name="content" id="content-select">
-        <option value="">Please choose an option</option>
-        <option value="facts">I want facts</option>
-        <option value="photos">I want photos</option>
-        </select>
+        
+        <form>
+            <label for="content-select">Choose calendar content:</label>
+            <select name="content" id="content-select">
+                <option value="">Please choose an option</option>
+                <option value="facts">I want facts</option>
+                <option value="photos">I want photos</option>
+            </select>
+        </form>
 
         <button id="generate-calendar">Generate calendar</button>
 
@@ -204,10 +207,16 @@
             </dialog>
 
         </section>
+        
     </main>
+    
+    <figure class="christmas-decor">
+        <img src="assets/images/christmas-decor.svg">
+    </figure>
 
     <canvas class="canvas"></canvas>
     
-    <script src="script.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/snow.js"></script>
 </body>
 </html>
