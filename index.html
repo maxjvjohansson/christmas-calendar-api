@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Max Christmas Calendar</title>
+
+    <link rel="icon" href="assets/images/christmas-ball-favicon.png" type="image/png">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/calendar.css">
@@ -16,7 +18,7 @@
     
     <main>
         
-        <form>
+        <form aria-labelledby="calendar-content-label">
             <label for="content-select">Choose calendar content:</label>
             <select name="content" id="content-select">
                 <option value="">Please choose an option</option>
@@ -27,7 +29,7 @@
 
         <button id="generate-calendar">Generate calendar</button>
 
-        <section class="calendar-container" id="calendar-container">
+        <section class="calendar-container" id="calendar-container" aria-label="Advent calendar">
             <ul class="calendar-list">
                 <li class="calendar-item" id="item-1" data-date="2024-12-01">
                     <button class="calendar-door" id="door-1">
@@ -210,8 +212,8 @@
         
     </main>
     
-    <figure class="christmas-decor">
-        <img src="assets/images/christmas-decor.svg">
+    <figure class="christmas-decor" aria-label="Christmas decoration">
+        <img src="assets/images/christmas-decor.svg" alt="Picture of christmas ornaments and branches">
     </figure>
 
     <canvas class="canvas"></canvas>
