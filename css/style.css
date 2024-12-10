@@ -5,13 +5,24 @@
     font-weight: normal;
 }
 
+@font-face {
+    font-family: "Poppins";
+    src: url(/assets/fonts/Poppins-Regular.ttf) format(truetype);
+    font-style: normal;
+    font-weight: normal;
+}
+
 :root {
     --blue: #254891;
     --red-light: #CD3133;
     --red-dark: #841313;
     --white: #FFFFFF;
     --black: #1E1E1E;
-    --h1-font: "Peanotes", sans-serif;
+    --black-faded: rgba(0, 0, 0, 0.7);
+    --box-shadow-color: var(--black);
+    --red-gradient: linear-gradient(180deg, var(--red-light), var(--red-dark));
+    --funny-font: "Peanotes", sans-serif;
+    --standard-font: "Poppins", sans-serif;
 }
 
 * {
@@ -22,6 +33,7 @@
 body {
     color: var(--black);
     background-color: var(--blue);
+    font-family: var(--standard-font);
 }
 
 canvas {
@@ -39,7 +51,7 @@ header {
     align-items: center;
     text-align: center;
     padding: 1rem 0;
-    font-family: var(--h1-font);
+    font-family: var(--funny-font);
     font-size: 2rem;
 }
 
@@ -52,7 +64,7 @@ form {
 
 label {
     font-size: 2rem;
-    font-family: var(--h1-font);
+    font-family: var(--funny-font);
 }
 
 @media (min-width: 768px) {
@@ -87,7 +99,7 @@ select {
     font-size: 1rem;
     color: var(--white);
     text-shadow: 0rem 0.5rem 1rem var(--black);;
-    background: linear-gradient(180deg, #CD3133, #841313);
+    background: var(--red-gradient);
     box-shadow: 0rem 0.5rem 1rem var(--black);
 }
 
