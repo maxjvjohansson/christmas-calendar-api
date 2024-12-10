@@ -55,22 +55,53 @@ label {
     font-family: var(--h1-font);
 }
 
+@media (min-width: 768px) {
+    label {
+        font-size: 3rem;
+    }
+}
+
 select {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-family: Arial, sans-serif;
+    margin-top: 2rem;
     padding: 0.5rem 1rem;
     border: 2px solid var(--black); 
-    border-radius: 5px; 
+    border-radius: 0.5rem; 
     background-color: var(--white); 
     outline: none;
     cursor: pointer; 
 }
 
-select:focus {
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Ljusglöd vid fokus */
-    border-color: #CD3133;
+@media (min-width: 768px) {
+    select {
+        font-size: 1.5rem;
+    }
 }
 
+#generate-calendar {
+    margin-top: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem 1rem;
+    font-size: 1rem;
+    color: var(--white);
+    text-shadow: 0rem 0.5rem 1rem var(--black);;
+    background: linear-gradient(180deg, #CD3133, #841313);
+    box-shadow: 0rem 0.5rem 1rem var(--black);
+}
+
+@media (min-width: 768px) {
+    #generate-calendar {
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    #generate-calendar:hover {
+        transform: scale(1.05);
+        transition: 0.3s ease;
+    }
+}
 
 main {
     display: flex;
