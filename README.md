@@ -5,7 +5,7 @@ This project is a dynamic christmas calendar website where the content behind ea
 
 ### Features:
 - Dynamic content selection (Facts or Photos) via dropdown.
-- Fetching data from two external APIs: NumbersAPI for daily facts and Picsum Photos for daily images.
+- Fetching data from two external APIs: Useless Facts for random daily facts and Picsum Photos for daily images.
 - Interactive calendar where users can open doors to reveal content for each day.
 - Animations for user interaction
 - Modal pop-up for displaying larger images and content.
@@ -19,7 +19,7 @@ This project is a dynamic christmas calendar website where the content behind ea
 - **GitHub Pages** - Deployment.
 
 ## API Sources
-- **NumbersAPI**: [http://numbersapi.com](http://numbersapi.com) for daily facts.
+- **Useless Facts**: [https://uselessfacts.jsph.pl/](https://uselessfacts.jsph.pl/) for random daily facts.
 - **Picsum Photos**: [https://picsum.photos](https://picsum.photos) for random images.
 
 ## How to Use
@@ -49,5 +49,5 @@ This project is licensed under the MIT License.
 
 ## Acknowledgments
 - Inspired by traditional Advent Calendars, this digital version offers a fun and interactive way to countdown to christmas by fetching facts and photos every day.
-- Thanks to [NumbersAPI](http://numbersapi.com) and [Picsum Photos](https://picsum.photos) for providing the data!
+- Thanks to [Useless Facts](https://uselessfacts.jsph.pl/random.json?language=en) and [Picsum Photos](https://picsum.photos) for providing the data!
 
