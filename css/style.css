@@ -1,13 +1,13 @@
 @font-face {
     font-family: "Peanotes";
-    src: url(assets/fonts/Peanotes-Regular.otf) format(opentype);
+    src: url(../assets/fonts/Peanotes-Regular.otf) format(opentype);
     font-style: normal;
     font-weight: normal;
 }
 
 @font-face {
     font-family: "Poppins";
-    src: url(assets/fonts/Poppins-Regular.ttf) format(truetype);
+    src: url(../assets/fonts/Poppins-Regular.ttf) format(truetype);
     font-style: normal;
     font-weight: normal;
 }
