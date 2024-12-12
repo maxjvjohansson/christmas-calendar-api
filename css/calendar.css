@@ -162,9 +162,19 @@
 
 .lock-icon-container {
     z-index: 1000;
+    animation: pulse 2s infinite;
 }
 
 .lock-icon-container img {
     width: 5rem;
     height: auto;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.07);
+    }
 }

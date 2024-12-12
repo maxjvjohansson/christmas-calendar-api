@@ -81,9 +81,9 @@ function fetchFactForDay(day, contentBox) {
         .then(data => {
             contentBox.innerHTML = `<p>${data}</p>`;
         })
-        .catch(err => {
+        .catch(error => {
             contentBox.innerHTML = `<p>Error loading fact</p>`;
-            console.error(err);
+            console.error(error);
         });
 }
 
@@ -93,75 +93,15 @@ function fetchPhotoForDay(day, contentBox) {
         .then(response => {
             contentBox.innerHTML = `<img src="${response.url}" alt="Random photo for day ${day}" />`;
         })
-        .catch(err => {
+        .catch(error => {
             contentBox.innerHTML = `<p>Error loading photo</p>`;
-            console.error(err);
+            console.error(error);
         });
 }
 
 // Get correct day from calendar object's ID
 function getDayFromItemId(id) {
     return id.split('-')[1];
-}
-
-// Modal elements
-const modal = document.getElementById('modal');
-const modalBody = document.getElementById('modal-body');
-const closeModalBtn = document.querySelector('.close-btn');
-
-// Open modal and show content in lightbox
-function openModal(content) {
-    modalBody.innerHTML = content; 
-    modal.style.display = 'flex';
-}
-
-// Close modal
-function closeModal() {
-    modal.style.display = 'none'; 
-    modalBody.innerHTML = ''; 
-}
-
-closeModalBtn.addEventListener('click', closeModal);
-
-// Close modal on click outside modalbox
-modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-        closeModal();
-    }
-});
-
-// Update calendar item click handler to open modal
-function handleCalendarItemClick(day, item) {
-    const contentType = getContentType();
-    const contentBox = item.closest('.calendar-item').querySelector('.content-box');
-
-    if (!contentType) {
-        contentBox.innerHTML = '';
-        contentBox.style.display = 'none';
-        return;
-    }
-
-    closeAllOtherDoors(item);
-
-    if (!item.classList.contains('open')) {
-        item.classList.add('open');
-        contentBox.style.display = 'block';
-        contentBox.innerHTML = '<p>Loading...</p>';
-
-        if (contentType === 'facts') {
-            fetchFactForDay(day, contentBox);
-        } else if (contentType === 'photos') {
-            fetchPhotoForDay(day, contentBox);
-        }
-    } else {
-        item.classList.remove('open');
-        contentBox.style.display = 'none';
-    }
-
-    // Open modal when content is clicked
-    contentBox.addEventListener('click', () => {
-        openModal(contentBox.innerHTML);
-    });
 }
 
 // Let users only open doors today and the doors before today
@@ -179,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             door.style.pointerEvents = 'none';
             contentBox.style.display = 'none';
 
+            // If condition is true, add a lock icon for the doors that can't yet be opened
             const lockIconContainer = document.createElement('div');
             lockIconContainer.classList.add('lock-icon-container');
 
