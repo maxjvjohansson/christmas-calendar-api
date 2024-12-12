@@ -76,10 +76,10 @@ function closeAllOtherDoors(openedItem) {
 
 // Fetch facts for each day
 function fetchFactForDay(day, contentBox) {
-    fetch(`http://numbersapi.com/12/${day}/date`)
-        .then(response => response.text())
+    fetch(`https://uselessfacts.jsph.pl/random.json?language=en`)
+        .then(response => response.json())
         .then(data => {
-            contentBox.innerHTML = `<p>${data}</p>`;
+            contentBox.innerHTML = `<p>${data.text}</p>`;
         })
         .catch(error => {
             contentBox.innerHTML = `<p>Error loading fact</p>`;
