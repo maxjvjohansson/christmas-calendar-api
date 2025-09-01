@@ -24,36 +24,15 @@ modal.addEventListener('click', (e) => {
     }
 });
 
-// Update calendar item click handler to open modal
-function handleCalendarItemClick(day, item) {
-    const contentType = getContentType();
-    const contentBox = item.closest('.calendar-item').querySelector('.content-box');
-
-    if (!contentType) {
-        contentBox.innerHTML = '';
-        contentBox.style.display = 'none';
-        return;
-    }
-
-    closeAllOtherDoors(item);
-
-    if (!item.classList.contains('open')) {
-        item.classList.add('open');
-        contentBox.style.display = 'block';
-        contentBox.innerHTML = '<p>Loading...</p>';
-
-        if (contentType === 'facts') {
-            fetchFactForDay(day, contentBox);
-        } else if (contentType === 'photos') {
-            fetchPhotoForDay(day, contentBox);
-        }
-    } else {
-        item.classList.remove('open');
-        contentBox.style.display = 'none';
-    }
-
-    // Open modal when content is clicked
-    contentBox.addEventListener('click', () => {
+// Add modal functionality to calendar items
+function addModalToContentBox(contentBox) {
+    // Remove existing click listeners to avoid duplicates
+    contentBox.removeEventListener('click', contentBox.modalClickHandler);
+    
+    // Create new click handler for modal
+    contentBox.modalClickHandler = () => {
         openModal(contentBox.innerHTML);
-    });
+    };
+    
+    contentBox.addEventListener('click', contentBox.modalClickHandler);
 }
