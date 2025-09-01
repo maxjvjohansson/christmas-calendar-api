@@ -91,29 +91,7 @@ select {
     }
 }
 
-#generate-calendar {
-    margin-top: 2rem;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 1rem 1rem;
-    font-size: 1rem;
-    color: var(--white);
-    text-shadow: 0rem 0.5rem 1rem var(--black);;
-    background: var(--red-gradient);
-    box-shadow: 0rem 0.5rem 1rem var(--black);
-}
 
-@media (min-width: 768px) {
-    #generate-calendar {
-        font-size: 1.5rem;
-        cursor: pointer;
-    }
-
-    #generate-calendar:hover {
-        transform: scale(1.05);
-        transition: 0.3s ease;
-    }
-}
 
 main {
     display: flex;

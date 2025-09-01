@@ -1,15 +1,29 @@
-// Event listener to generate calendar
-document.getElementById('generate-calendar').addEventListener('click', generateCalendar);
+// Event listener for content type selection
+document.getElementById('content-select').addEventListener('change', handleContentTypeChange);
 
-function generateCalendar() {
+function handleContentTypeChange() {
     const contentType = getContentType();
     if (!contentType) {
-        alert("Please choose a content type first!");
+        // Clear all content when no option is selected
+        clearAllContent();
         return;
     }
 
+    // Automatically generate calendar when content type is selected
     const calendarItems = document.querySelectorAll('.calendar-door');
     calendarItems.forEach(addCalendarItemListener);
+}
+
+function clearAllContent() {
+    const calendarItems = document.querySelectorAll('.calendar-item');
+    calendarItems.forEach(item => {
+        const door = item.querySelector('.calendar-door');
+        const contentBox = item.querySelector('.content-box');
+        
+        door.classList.remove('open');
+        contentBox.style.display = 'none';
+        contentBox.innerHTML = '';
+    });
 }
 
 // Function to target selected content type
@@ -33,9 +47,8 @@ function handleCalendarItemClick(day, item) {
     const contentBox = item.closest('.calendar-item').querySelector('.content-box');
 
     if (!contentType) {
-        // Clear content if no content type is selected
-        contentBox.innerHTML = "";
-        contentBox.style.display = "none"; // Hide content box
+        // Show message asking user to select content type first
+        alert("Please choose a content type first!");
         return;
     }
 
@@ -52,6 +65,11 @@ function handleCalendarItemClick(day, item) {
             fetchFactForDay(day, contentBox);
         } else if (contentType === 'photos') {
             fetchPhotoForDay(day, contentBox);
+        }
+        
+        // Add modal functionality to the content box
+        if (typeof addModalToContentBox === 'function') {
+            addModalToContentBox(contentBox);
         }
     } else {
         // If a door is already open, close it
@@ -89,14 +107,21 @@ function fetchFactForDay(day, contentBox) {
 
 // Fetch photo for each day
 function fetchPhotoForDay(day, contentBox) {
-    fetch(`https://picsum.photos/seed/${day}/300`)
-        .then(response => {
-            contentBox.innerHTML = `<img src="${response.url}" alt="Random photo for day ${day}" />`;
-        })
-        .catch(error => {
-            contentBox.innerHTML = `<p>Error loading photo</p>`;
-            console.error(error);
-        });
+    const img = new Image();
+    const photoUrl = `https://picsum.photos/seed/${day}/300`;
+    
+    img.onload = function() {
+        contentBox.innerHTML = `<img src="${photoUrl}" alt="Random photo for day ${day}" />`;
+    };
+    
+    img.onerror = function() {
+        // Fallback to a placeholder or error message
+        contentBox.innerHTML = `<p>Photo for day ${day}</p><p style="color: #666; font-style: italic;">Image could not be loaded</p>`;
+    };
+    
+    // Set crossOrigin to anonymous to handle CORS
+    img.crossOrigin = 'anonymous';
+    img.src = photoUrl;
 }
 
 // Get correct day from calendar object's ID
@@ -130,6 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
             lockIconContainer.appendChild(lockIcon);
 
             door.appendChild(lockIconContainer);
+        } else {
+            // Add click event listeners to doors that can be opened
+            addCalendarItemListener(door);
         }
     });
 });
